@@ -4,7 +4,7 @@ import configparser
 class ConfigHandler:
 
     __module_name = "NordInvasion"
-    __updater_version = "0.2.0"
+    __updater_version = "0.2.1"
     __publisher = "NordInvasion"
     __url = "https://nordinvasion.com"
     __default_channel = "master"

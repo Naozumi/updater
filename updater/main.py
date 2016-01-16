@@ -355,7 +355,12 @@ class Main:
         logo_path = os.path.join(self.working_dir, "main.bmp")
         if not os.path.exists(logo_path):
             logo_path = resource_path("logo.bmp")
-        logo = PIL.ImageTk.PhotoImage(PIL.Image.open(logo_path))
+        while True:
+            try:
+                logo = PIL.ImageTk.PhotoImage(PIL.Image.open(logo_path))
+                break
+            except IOError:
+                logo_path = resource_path("logo.bmp")
         self.main_image.config(image=logo)
         self.main_image.logo = logo
 

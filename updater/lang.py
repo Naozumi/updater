@@ -20,7 +20,7 @@ class LanguageHandler:
     def __init__(self, lang_dir, lang):
         self.lang_dir = lang_dir
         self.lang = configparser.ConfigParser()
-        self.lang.read(os.path.join(self.lang_dir, lang + ".ini"))
+        self.lang.read(os.path.join(self.lang_dir, lang + ".ini"), encoding="cp1250")
         self.lang_name = self.__get("Header", "name")
         self.lang_code = self.__get("Header", "code")
 
@@ -33,7 +33,7 @@ class LanguageHandler:
                 # The language code is the file name
                 code = os.path.splitext(os.path.basename(file))[0]
                 # Load the language file to get the name
-                __lang.read(os.path.join(self.lang_dir, code + ".ini"))
+                __lang.read(os.path.join(self.lang_dir, code + ".ini"), encoding="cp1250")
                 name = __lang.get("Header", "name", fallback=None)
                 # Only append the language if a code and name were found
                 if code and name:
