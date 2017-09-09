@@ -25,6 +25,7 @@ import urllib.parse
 import urllib.request
 
 
+
 class Main:
     # Tk master window
     master = None
