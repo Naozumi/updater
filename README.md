@@ -1,6 +1,6 @@
 # NordInvasion Updater
 
-Language: Python 3.6
+Language: Python 3.5
 
 The packager generates a json file containing an index of all the mod file hashes.
 
@@ -8,7 +8,7 @@ The updater finds the newest hash file and fastest server to download the latest
 
 Requirements:
     Pillow
-        https://pypi.python.org/pypi/Pillow/2.9.0
+        https://pypi.python.org/pypi/Pillow/
         $ pip install Pillow
     Cerifi
         https://pypi.python.org/pypi/certifi

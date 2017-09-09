@@ -1,7 +1,7 @@
 # -*- mode: python -*-
 
 block_cipher = None
-path = 'D:\\Projects\\NordInvasion\\GIT-Updater-Private'
+path = '<insert_path>'
 
 a = Analysis(['updater.py'],
              pathex=[path],
