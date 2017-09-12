@@ -18,7 +18,7 @@ import updater.cfg
 import updater.hash
 import updater.lang
 import updater.log
-import updater.setup
+# import updater.setup
 import updater.update
 import urllib.error
 import urllib.parse
@@ -131,17 +131,17 @@ class Main:
                 self.log.error("Unknown error cleaning up self-update files", tb=True)
 
         # Check if the uninstall routine has been called
-        if self.args.uninstall:
-            try:
-                setup = updater.setup.SetupHandler(self.cfg.module_name(), self.log)
-                setup.remove_start_menu_shortcut()
-                setup.remove_registry_uninstall_entry()
-                setup.remove_files()
-                setup.create_uninstall_bat()
-                subprocess.Popen(os.path.join(self.script_path, "_uninstall.bat"))
-            except:
-                self.log.error("Unknown error during uninstall routine", tb=True)
-            sys.exit()
+        # if self.args.uninstall:
+        #     try:
+        #         setup = updater.setup.SetupHandler(self.cfg.module_name(), self.log)
+        #         setup.remove_start_menu_shortcut()
+        #         setup.remove_registry_uninstall_entry()
+        #         setup.remove_files()
+        #         setup.create_uninstall_bat()
+        #         subprocess.Popen(os.path.join(self.script_path, "_uninstall.bat"))
+        #     except:
+        #         self.log.error("Unknown error during uninstall routine", tb=True)
+        #     sys.exit()
 
         # Set the language options
         self.lang = updater.lang.LanguageHandler(resource_path("lang"), self.cfg.language(default=self.args.language))
@@ -530,25 +530,25 @@ class Main:
             self.log.info("Create " + _path)
             os.mkdir(_path)
         # Copy this updater to the new location, run it, and exit
-        setup = updater.setup.SetupHandler(self.cfg.module_name(), self.log,
-                                           file=self.script_name + ".exe",
-                                           path=_path,
-                                           publisher=self.cfg.publisher(),
-                                           version=self.cfg.updater_version(),
-                                           url=self.cfg.url())
-        new_file = setup.create_files()
-        setup.create_start_menu_shortcut(new_file, _path)
-        setup.create_registry_uninstall_entry()
-        time.sleep(1)
-        # Build the argument string
-        try:
-            arguments = " --cleanup-installer " + sys.argv[0]
-            if self.args.language is not None:
-                arguments += " -l " + self.args.language
-            self.log.debug("Launch " + new_file + arguments)
-            subprocess.Popen(new_file + arguments, cwd=_path)
-        except:
-            self.log.error("Unexpected error launching installed updater: " + new_file, tb=True)
+        # setup = updater.setup.SetupHandler(self.cfg.module_name(), self.log,
+        #                                   file=self.script_name + ".exe",
+        #                                   path=_path,
+        #                                   publisher=self.cfg.publisher(),
+        #                                   version=self.cfg.updater_version(),
+        #                                   url=self.cfg.url())
+        # new_file = setup.create_files()
+        # setup.create_start_menu_shortcut(new_file, _path)
+        # setup.create_registry_uninstall_entry()
+        # time.sleep(1)
+        # # Build the argument string
+        # try:
+        #     arguments = " --cleanup-installer " + sys.argv[0]
+        #     if self.args.language is not None:
+        #         arguments += " -l " + self.args.language
+        #     self.log.debug("Launch " + new_file + arguments)
+        #     subprocess.Popen(new_file + arguments, cwd=_path)
+        # except:
+        #     self.log.error("Unexpected error launching installed updater: " + new_file, tb=True)
         self.exit()
 
     def process_backend_queue(self):
